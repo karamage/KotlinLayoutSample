@@ -2,6 +2,8 @@ package com.karamage.androidlayout
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import android.widget.Button
 import android.widget.LinearLayout
 
 class MainActivity : AppCompatActivity() {
@@ -20,6 +22,17 @@ class MainActivity : AppCompatActivity() {
             val button = ll.findViewById(R.id.button)
             button.setOnClickListener( { v ->
                 val ll = v.parent as LinearLayout
+                val groupll = ll.findViewById(R.id.inputgroup)
+                when (groupll.visibility) {
+                    View.GONE -> {
+                        groupll.visibility = View.VISIBLE
+                        (v as Button).text = "Hidden Group"
+                    }
+                    View.VISIBLE -> {
+                        groupll.visibility = View.GONE
+                        (v as Button).text = "Show Group"
+                    }
+                }
             })
         }
     }
